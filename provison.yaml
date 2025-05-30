@@ -1,0 +1,4 @@
+- name: Setup environment
+  hosts: localhost
+  roles:
+    - apps
