@@ -25,15 +25,13 @@
   ansible.builtin.script:
     cmd: "/home/{{ ansible_user }}/install.sh"
 
-- name: Install zsh-autosuggestions
+- name: Install plugins
   ansible.builtin.git:
-    repo: "https://github.com/zsh-users/zsh-autosuggestions"
-    dest: "/home/{{ ansible_user }}/.zsh/zsh-autosuggestions"
-
-- name: Install zsh-syntax-highlighting
-  ansible.builtin.git:
-    repo: "https://github.com/zsh-users/zsh-syntax-highlighting"
-    dest: "/home/{{ ansible_user }}/.zsh/zsh-syntax-highlighting"
+    repo: "https://github.com/zsh-users/{{ item }}"
+    dest: "/home/{{ ansible_user }}/.zsh/{{ item }}"
+  loop:
+    - zsh-autosuggestions
+    - zsh-syntax-highlighting
 
 - name: Configure zsh
   ansible.builtin.template:
