@@ -1,0 +1,22 @@
+- name: Download pyenv
+  ansible.builtin.get_url:
+    url: https://pyenv.run 
+    dest: "/home/{{ ansible_user }}/install_pyenv.sh"
+    mode: "0755"
+
+- name: Install pyenv
+  ansible.builtin.script:
+    cmd: "/home/{{ ansible_user }}/install_pyenv.sh"
+
+- name: Install pyenv-virtualenv
+  ansible.builtin.git:
+    repo: "https://github.com/pyenv/pyenv-virtualenv"
+    dest: "/home/{{ ansible_user }}/.pyenv/plugins/pyenv-virtualenv"
+
+- name: Install Python
+  ansible.builtin.command:
+    cmd: pyenv install {{ item }}
+  loop:
+    - 3.12
+    - 3.10
+    - 3.8
