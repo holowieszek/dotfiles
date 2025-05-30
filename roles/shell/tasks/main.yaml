@@ -1,0 +1,27 @@
+- name: Install wezterm
+  community.general.flatpak:
+    name: org.wezfurlong.wezterm
+    state: present
+
+- name: Configure wezterm
+  ansible.builtin.template:
+    src: wezterm.lua
+    dest: "/home/{{ ansible_user }}/.wezterm.lua"
+    mode: "0755"
+
+- name: Install zsh
+  ansible.builtin.package:
+    name: zsh
+    state: present
+  become: true
+
+- name: Download ohmyzsh
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: "/home/{{ ansible_user }}/install.sh"
+    mode: "0755"
+
+- name: Install ohmyzsh
+  ansible.builtin.script:
+    cmd: "/home/{{ ansible_user }}/install.sh"
+

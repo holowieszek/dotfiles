@@ -1,4 +1,9 @@
-- name: Setup environment
+- name: Install apps
   hosts: localhost
   roles:
     - apps
+
+- name: Install shell
+  hosts: localhost
+  roles:
+    - shell
