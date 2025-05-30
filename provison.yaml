@@ -1,4 +1,7 @@
-- name: Setup environment
+- name: Configure environment
   hosts: localhost
   roles:
-    - apps
+    - { role: base, tags: base }
+    - { role: apps, tags: apps }
+    - { role: shell, tags: shell }
+    - { role: runtimes, tags: runtimes }

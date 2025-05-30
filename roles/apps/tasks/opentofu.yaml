@@ -1,0 +1,10 @@
+- name: Download OpenTofu
+  ansible.builtin.get_url:
+    url: https://get.opentofu.org/install-opentofu.sh
+    dest: /home/{{ ansible_user }}/install-opentofu.sh
+    mode: 0755
+  
+- name: Install OpenTofu
+  ansible.builtin.script:
+    cmd: /home/{{ ansible_user }}/install-opentofu.sh --install-method deb
+  become: true
