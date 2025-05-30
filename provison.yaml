@@ -1,9 +1,7 @@
-- name: Install apps
+- name: Configure environment
   hosts: localhost
   roles:
+    - { role: base, tags: base }
     - apps
-
-- name: Install shell
-  hosts: localhost
-  roles:
     - shell
+    - { role: runtimes, tags: runtimes }

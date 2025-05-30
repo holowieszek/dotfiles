@@ -39,3 +39,10 @@
   ansible.builtin.template:
     src: .zshrc
     dest: "/home/{{ ansible_user }}/.zshrc"
+
+- name: Change default shell to /bin/zsh
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    shell: /bin/zsh
+    state: present
+  become: true
