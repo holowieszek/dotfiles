@@ -1,0 +1,46 @@
+# ---------------------------------------------------------------------------- #
+#                                    AWS CLI                                   #
+# ---------------------------------------------------------------------------- #
+- name: Download AWS CLI
+  ansible.builtin.get_url:
+    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: "/home/{{ ansible_user }}/awscliv2.zip"
+    mode: 0755
+
+- name: Create AWS directory
+  ansible.builtin.file:
+    path: "/home/{{ ansible_user }}/aws"
+    state: directory
+
+- name: Unarchive AWS CLI
+  ansible.builtin.unarchive:
+    src: "/home/{{ ansible_user }}/awscliv2.zip"
+    dest: /home/{{ ansible_user }}
+
+- name: Install AWS CLI
+  ansible.builtin.shell:
+    cmd: "/home/{{ ansible_user }}/aws/install"
+  become: true
+
+# ---------------------------------------------------------------------------- #
+#                               Google Cloud CLI                               #
+# ---------------------------------------------------------------------------- #
+- name: Download GCloud CLI
+  ansible.builtin.get_url:
+    url: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz
+    dest: "/home/{{ ansible_user }}/gcloud.tar.gz"
+    mode: 0755
+
+- name: Create GClodu CLI directory
+  ansible.builtin.file:
+    path: "/home/{{ ansible_user }}/google-cloud-sdk"
+    state: directory
+
+- name: Unarchive GCloud CLI
+  ansible.builtin.unarchive:
+    src: "/home/{{ ansible_user }}/gcloud.tar.gz"
+    dest: "/home/{{ ansible_user }}"
+
+- name: Install GCloud CLI
+  ansible.builtin.shell:
+    cmd: "/home/{{ ansible_user }}/google-cloud-sdk/install.sh -q"

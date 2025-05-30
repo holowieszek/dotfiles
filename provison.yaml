@@ -2,6 +2,6 @@
   hosts: localhost
   roles:
     - { role: base, tags: base }
-    - apps
-    - shell
+    - { role: apps, tags: apps }
+    - { role: shell, tags: shell }
     - { role: runtimes, tags: runtimes }

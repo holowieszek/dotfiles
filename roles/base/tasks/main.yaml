@@ -21,3 +21,6 @@
     - libffi-dev
     - liblzma-dev
     - flatpak
+    - apt-transport-https
+    - ca-certificates
+    - gnupg
